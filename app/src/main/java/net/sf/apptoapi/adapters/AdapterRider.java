@@ -13,6 +13,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import net.sf.apptoapi.model.Rider;
 
 import java.util.List;
@@ -44,6 +46,10 @@ public class AdapterRider extends RecyclerView.Adapter<AdapterRider.HolderRider>
         holder.tvRiderNumber.setText(rider.getNumber());
         holder.tvRiderCountry.setText(rider.getCountry());
         holder.tvRiderSponsor.setText(rider.getSponsor());
+
+        Glide.with(context)
+                .load(rider.getFoto())
+                .into(holder.imageView);
     }
 
     @Override
@@ -70,6 +76,7 @@ public class AdapterRider extends RecyclerView.Adapter<AdapterRider.HolderRider>
             tvRiderNumber=itemView.findViewById(R.id.tvRiderNumber);
             tvRiderSponsor=itemView.findViewById(R.id.tvRiderSponsor);
             tvRiderCountry=itemView.findViewById(R.id.tvRiderCountry);
+            imageView=itemView.findViewById(R.id.image_rider);
         }
     }
 }
