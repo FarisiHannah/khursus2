@@ -18,4 +18,5 @@
         <item name="android:statusBarColor">@color/toolbar_color</item>
         <item name="android:colorPrimary">@color/prime_color</item>
     </style>
+
 </resources>

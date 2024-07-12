@@ -1,8 +1,10 @@
 package net.sf.apptoapi.adapters;
 
+import net.sf.apptoapi.DetailActivity;
 import net.sf. apptoapi. R;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import net.sf.apptoapi.model.Rider;
 
@@ -21,8 +24,8 @@ import java.util.List;
 
 public class AdapterRider extends RecyclerView.Adapter<AdapterRider.HolderRider> {
 
-    private Context context;
-    private List<Rider> riders;
+    private final Context context;
+    private final List<Rider> riders;
 
     public AdapterRider(Context context, List<Rider> riders) {
         this.context = context;
@@ -34,8 +37,7 @@ public class AdapterRider extends RecyclerView.Adapter<AdapterRider.HolderRider>
     public HolderRider onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //menyematkan item rider ke dalam rider
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_item_rider,parent,false);
-        HolderRider holderRider = new HolderRider(view);
-        return holderRider;
+        return new HolderRider(view);
     }
 
     @Override
@@ -48,7 +50,8 @@ public class AdapterRider extends RecyclerView.Adapter<AdapterRider.HolderRider>
         holder.tvRiderSponsor.setText(rider.getSponsor());
 
         Glide.with(context)
-                .load(rider.getFoto())
+                .load(rider.getPhoto())
+                .placeholder(R.drawable.baseline_person_32)
                 .into(holder.imageView);
     }
 
@@ -59,14 +62,14 @@ public class AdapterRider extends RecyclerView.Adapter<AdapterRider.HolderRider>
             return riders.size();
         }
         else {
-            Toast.makeText(context, "Rider data is not available", Toast.LENGTH_SHORT);
+            Toast.makeText(context, "Rider data is not available", Toast.LENGTH_SHORT).show();
             return 0;
         }
     }
 
     public class HolderRider extends RecyclerView.ViewHolder {
 
-        private TextView tvRiderId, tvRiderName, tvRiderNumber, tvRiderSponsor,tvRiderCountry;
+        private final TextView tvRiderId, tvRiderName, tvRiderNumber, tvRiderSponsor,tvRiderCountry;
         ImageView imageView;
 
         public HolderRider(@NonNull View itemView) {
@@ -77,6 +80,25 @@ public class AdapterRider extends RecyclerView.Adapter<AdapterRider.HolderRider>
             tvRiderSponsor=itemView.findViewById(R.id.tvRiderSponsor);
             tvRiderCountry=itemView.findViewById(R.id.tvRiderCountry);
             imageView=itemView.findViewById(R.id.image_rider);
+
+            itemView.setOnLongClickListener(v->{
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context);
+                builder.setTitle("Choose Action");
+                builder.setMessage("what action do you want to perform?");
+                builder.setPositiveButton("Detail", ((dialog, which) -> {
+                    Intent intent = new Intent(context, DetailActivity.class);
+                    intent.putExtra("id",tvRiderId.getText());
+                    intent.putExtra("name",tvRiderName.getText());
+                    intent.putExtra("country",tvRiderCountry.getText());
+                    intent.putExtra("number",tvRiderNumber.getText());
+                    
+                    context.startActivity(intent);
+                }));
+                builder.setIcon(R.drawable.baseline_info_32);
+                builder.setCancelable(true);
+                builder.show();
+                return false;
+            });
         }
     }
 }
