@@ -1,12 +1,18 @@
 package net.sf.apptoapi;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -40,13 +46,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
+        Log.i("Create","MainActivity create");
+        //EdgeToEdge.enable(this);
 
         setContentView(R.layout.activity_main);
 
         loadingIndicator = findViewById(R.id.progressIndicatorRider);
         loadingIndicator=findViewById(R.id.progressIndicatorRider);
         toolbar = findViewById(R.id.toolbarMainActivity);
+        setSupportActionBar(toolbar);
         rv = findViewById(R.id.recyclerViewRiders);
         layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         rv.setLayoutManager(layoutManager);
@@ -58,14 +66,34 @@ public class MainActivity extends AppCompatActivity {
                 getAllRiders();
             },3000);
         });
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.option_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId()==R.id.item_tambah) {
+            startActivity(new Intent(this, TambahActivity.class));
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
     protected void onResume() {
+        Log.i("Resume","MainActivity resume");
         super.onResume();
         //loadingIndicator.setVisibility(View.VISIBLE);
         getAllRiders();
+
+
     }
+
 
     public void getAllRiders(){
 
@@ -88,5 +116,29 @@ public class MainActivity extends AppCompatActivity {
             });
         },1000);
         loadingIndicator.setVisibility(View.GONE);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.i("restart", "MainActivity Restart");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i("Pause","MainActivity Pause");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i("Start","MainActivity start");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i("Destroy", "MainActivity Destroy");
     }
 }

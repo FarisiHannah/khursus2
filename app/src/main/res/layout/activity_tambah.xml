@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".TambahActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarMainActivity"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/toolbar_color"
+        app:navigationIcon="@drawable/baseline_dashboard_32"
+        app:title="List Of Riders"
+        app:titleTextColor="@color/white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/namecontainer"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="12dp"
+            app:boxBackgroundColor="@color/white"
+            app:helperText="*Required"
+            app:helperTextTextColor="#ff035c">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tvName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Isi dengan Nama"
+                android:lines="@integer/material_motion_duration_long_1" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/numbercontainer"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="12dp"
+            app:boxBackgroundColor="@color/white"
+            app:helperText="*Required"
+
+            app:helperTextTextColor="#ff035c">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tvNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Isi dengan Nomor"
+                android:inputType="number"
+                android:lines="@integer/material_motion_duration_long_1" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/sponsorcontainer"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="12dp"
+            app:boxBackgroundColor="@color/white"
+            app:helperText="*Required"
+            app:helperTextTextColor="#ff035c">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tvSponsor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Isi dengan Sponsor"
+                android:lines="@integer/material_motion_duration_long_1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/countrycontainer"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="12dp"
+            app:boxBackgroundColor="@color/white"
+            app:helperText="*Required"
+            app:helperTextTextColor="#ff035c">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tvRiderCountry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Isi dengan Negara"
+                android:lines="@integer/material_motion_duration_long_1" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

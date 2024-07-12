@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+
     android:theme="@style/theme.androidapi.noactionbar"
     tools:context=".MainActivity">
 
@@ -16,26 +17,24 @@
         android:background="@color/toolbar_color"
         app:navigationIcon="@drawable/baseline_dashboard_32"
         app:title="List Of Riders"
-        app:titleTextColor="@color/white"
-        android:paddingTop="12dp"
-        />
+        app:titleTextColor="@color/white" />
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/progressIndicatorRider"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:indeterminate="true"
         android:layout_gravity="center"
+        android:indeterminate="true"
 
         app:indicatorColor="#f423a6"
 
         />
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swiperRefreshRiders"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-
+        android:layout_height="wrap_content"
+        app:swipeRefreshLayoutProgressSpinnerBackgroundColor="@color/red">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewRiders"

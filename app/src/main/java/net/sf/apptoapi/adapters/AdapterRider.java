@@ -5,6 +5,7 @@ import net.sf. apptoapi. R;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,8 +92,11 @@ public class AdapterRider extends RecyclerView.Adapter<AdapterRider.HolderRider>
                     intent.putExtra("name",tvRiderName.getText());
                     intent.putExtra("country",tvRiderCountry.getText());
                     intent.putExtra("number",tvRiderNumber.getText());
-                    
                     context.startActivity(intent);
+                }));
+                builder.setNegativeButton("Delete",((d,w)->{
+                    Log.i("info w ", Integer.toString(w));
+                    d.dismiss();
                 }));
                 builder.setIcon(R.drawable.baseline_info_32);
                 builder.setCancelable(true);
